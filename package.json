@@ -1,0 +1,12 @@
+{
+  "name": "kuckucksnest-analyse",
+  "description": "Tools for analysing and searching documents",
+  "author": "Steffen Kühne",
+  "version": "0.0.1",
+  "license": "properietary",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:digitalegarage/kuckucksnest-analyse.git"
+  }
+}
