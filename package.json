@@ -8,5 +8,11 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:digitalegarage/kuckucksnest-analyse.git"
+  },
+  "dependencies": {
+    "tika": "git@github.com:ICIJ/node-tika.git"
+  },
+  "devDependencies": {
+    "eslint-config-esnext": "^1.6.0"
   }
 }
