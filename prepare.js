@@ -1,22 +1,35 @@
-const prepare = ((() => {
+// Prepare Elasticsearch index
+(function () {
 
-  // Prepare Elasticsearch index
   const elastic = require('elasticsearch');
-  const client = new elastic.Client({ host: 'localhost:9200' });
 
+  // Configuration
+  let host = 'localhost:9200';
   let index = 'kuckucksnest';
   let type = 'doc';
+
+  let client;
 
   // Execute script if not used as a module
   if (!module.parent) {
 
-    init(process.argv[2]);
+    init(
+      process.argv[2],
+      process.argv[3],
+      process.argv[4]
+    );
   }
 
-  function init(_index, _type) {
+  function init(_host, _index, _type) {
 
+    // Overwrite default configuration with arguments
+    // from module or command line interface
+    host = _host || host;
     index = _index || index;
     type = _type || type;
+
+    // Initialize Elasticsearch client
+    client = new elastic.Client({ host: host });
 
     Promise.resolve()
       .then(deleteIndex, handleError)
@@ -148,4 +161,4 @@ const prepare = ((() => {
   }
 
   module.exports = { init };
-})());
+})();

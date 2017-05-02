@@ -1,14 +1,14 @@
-const extract = ((() => {
+// Extract text from PDF files, using OCR if necessary
+(function () {
 
-  // Extract text from PDF files, using OCR if necessary
   const fs = require('fs');
   const path = require('path');
   const dir = require('node-dir');
   const tika = require('tika');
 
   // Configuration
-  let inputDir = './test/';
-  let outputDir = './text/';
+  let inputFolder = './test/';
+  let outputFolder = './text/';
 
   // Tika and OCR options
   const options = {
@@ -32,19 +32,19 @@ const extract = ((() => {
     );
   }
 
-  function init(_inputDir, _outputDir, _language, _callback) {
+  function init(_inputFolder, _outputFolder, _language, _callback) {
 
     // Overwrite default configuration with arguments
     // from module or command line interface
-    inputDir = _inputDir || inputDir;
-    outputDir = _outputDir || outputDir;
+    inputFolder = _inputFolder || inputFolder;
+    outputFolder = _outputFolder || outputFolder;
     options.language = _language || options.language;
     callback = _callback || callback;
 
     // Create output folder if missing
-    if (!fs.existsSync(outputDir)) {
+    if (!fs.existsSync(outputFolder)) {
 
-      fs.mkdirSync(outputDir);
+      fs.mkdirSync(outputFolder);
     }
 
     readFiles(processFiles);
@@ -53,7 +53,7 @@ const extract = ((() => {
   function readFiles(callback) {
 
     // Get a list of all files
-    dir.files(inputDir, (error, files) => {
+    dir.files(inputFolder, (error, files) => {
 
       if (error) { throw error; }
 
@@ -96,7 +96,7 @@ const extract = ((() => {
       const fileName = filePath.substr(filePath.lastIndexOf('/') + 1);
 
       // Save extracted content as text file
-      saveFile(path.join(outputDir, `${fileName}.txt`), result);
+      saveFile(path.join(outputFolder, `${fileName}.txt`), result);
       callback();
     });
   }
@@ -119,4 +119,4 @@ const extract = ((() => {
   }
 
   module.exports = { init };
-})());
+})();
