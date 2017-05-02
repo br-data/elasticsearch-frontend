@@ -10,7 +10,7 @@
     "url": "git@github.com:digitalegarage/kuckucksnest-analyse.git"
   },
   "dependencies": {
-    "elasticsearch": "^13.0.0",
+    "elasticsearch": "^11.0.1",
     "node-dir": "^0.1.16",
     "tika": "git@github.com:ICIJ/node-tika.git"
   },
