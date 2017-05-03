@@ -1,4 +1,8 @@
-p ID: #{user.id}
-p Username: #{user.username}
-p Name: #{user.displayName}
-p <a href="/logout">Log out</a>
+extends layout
+
+block content
+
+  p ID: #{user.id}
+  p Username: #{user.username}
+  p Name: #{user.displayName}
+  p <a href="/logout">Log out</a>

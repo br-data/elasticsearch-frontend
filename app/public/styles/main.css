@@ -1,0 +1,287 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  background: #f0f0f4;
+}
+
+header {
+  background: #fff;
+  padding: 2em 0 3em;
+  margin-bottom: 3em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
+}
+
+header h1 {
+  margin-top: 0;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  text-align: right;
+  background: -moz-linear-gradient(45deg, #ffffff 0%,#ffffff 50%,#6da56d 50%,#6da56d 100%);
+  background: -webkit-linear-gradient(45deg, #ffffff 0%,#ffffff 50%,#6da56d 50%,#6da56d 100%);
+  background: linear-gradient(45deg, #ffffff 0%,#ffffff 50%,#6da56d 50%,#6da56d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#6da56d', GradientType=1);
+}
+
+.center {
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+
+.center {
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+input, button, label {
+  font-size: 1em;
+  line-height: 1em;
+}
+
+input:focus,
+button:focus {
+  outline: 0;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+#search,
+#button {
+  height: 2em;
+  display: inline-block;
+}
+
+#search {
+  width: calc(100% - 110px);
+  padding: 0 .4em;
+  border: 2px solid #ccd;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  transition: border .2s ease;
+}
+
+#search:focus {
+  border-color: #aab;
+}
+
+#button {
+  width: 110px;
+  float: right;
+  color: #fff;
+  background: #6da56d;
+  border: 2px solid #6da56d;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  line-height: 1em;
+  text-align: left;
+  padding: 2px 6px 3px 14px;
+  transition: background .2s ease, border .2s ease;
+}
+
+#button:hover {
+  background: #4f874f;
+  border-color: #4f874f;
+}
+
+#button div {
+  display: inline-block;
+  #fff-space: nowrap;
+  vertical-align: text-bottom;
+}
+
+#button span {
+  margin-right: .2em;
+}
+
+#button .loading {
+  visibility: hidden;
+}
+
+.mode {
+  margin: 1em 0 .2em;
+}
+
+.options > div {
+  display: inline-block;
+  #fff-space: nowrap;
+}
+
+.options strong {
+  width: 3.5em;
+  display: inline-block;
+}
+
+.options label {
+  margin-right: .5em;
+}
+
+#results {
+  opacity: 0;
+}
+
+#results.visible {
+
+  opacity: 1;
+  transition: opacity .25s ease;
+}
+
+.document {
+  margin: 20px 0 40px;
+  padding: 10px;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+
+.document: before,
+.document: after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .8);
+  top: 50%;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  border-radius: 100px / 10px;
+}
+
+.header {
+  margin-top: 5px;
+}
+
+.header.contract .date {
+  display: none;
+}
+
+.header.contract .title {
+  font-weight: bold;
+}
+
+.date,
+.title,
+.file {
+  color: #889;
+}
+
+.download {
+  float: right;
+  cursor: pointer;
+}
+
+.download a {
+  display: inline-block;
+  font-size: .8em;
+  padding: 4px 5px;
+  background: #889;
+  color: #fff;
+  border-radius: 3px;
+  margin-right: 3px;
+  text-decoration: none;
+  transition: background .2s ease, border .2s ease;
+}
+
+.download a:hover {
+  background: #667;
+}
+
+.hit {
+  font-size: .9em;
+}
+
+.hit em {
+  font-style: normal;
+  font-weight: bold;
+  background: #ffff00;
+}
+
+.loading {
+  border-radius: 50%;
+  width: 19px;
+  height: 19px;
+  border: 3px solid rgba(255, 255, 255, .2);
+  border-top-color: #fff;
+  animation: spin 1s infinite linear;
+  margin: 0;
+}
+
+.count p:first-child {
+  font-weight: bold;
+}
+
+.error {
+  color: #b22222;
+}
+
+.warning {
+  color: #ffa500;
+}
+
+@keyframes spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media all and (max-width: 360px) {
+
+  #search {
+    width: 100%;
+    border-right: 2px solid #ccd;
+    border-radius: 4px;
+  }
+
+  #button {
+    width: 100%;
+    margin-top: .5em;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  #button > div {
+    width: 100%;
+  }
+}

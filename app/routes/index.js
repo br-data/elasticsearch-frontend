@@ -1,11 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
 
-// Define routes.
+const checkLogin = require('../lib/checkLogin')
+
+// Define routes
 router.get('/',
+  checkLogin(),
   (req, res) => {
-    res.render('home', { user: req.user });
+    res.render('search', { user: req.user });
   });
 
 router.get('/login',
@@ -26,7 +29,7 @@ router.get('/logout',
   });
 
 router.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
+  checkLogin(),
   (req, res) => {
     res.render('profile', { user: req.user });
   });

@@ -1,15 +1,16 @@
-var express = require('express');
-var expressSession = require('express-session');
+const express = require('express');
+const expressSession = require('express-session');
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-var morgan = require('morgan')('combined');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const morgan = require('morgan')('combined');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-var db = require('./db');
-var routes = require('./routes/index');
+const db = require('./db');
+const routes = require('./routes/index');
 
 // Create a new Express application.
 const app = express();
@@ -38,7 +39,7 @@ passport.deserializeUser((id, cb) => {
 });
 
 // Configure view engine to render pug templates.
-app.set('views', `${__dirname}/views`);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Use application-level middleware for common functionality, including
@@ -51,6 +52,7 @@ app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialize
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect routes
 app.use('/', routes);
