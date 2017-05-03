@@ -1,0 +1,75 @@
+var express = require('express');
+var expressSession = require('express-session');
+
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+var morgan = require('morgan')('combined');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var db = require('./db');
+var routes = require('./routes/index');
+
+// Create a new Express application.
+const app = express();
+
+// Configure the local strategy for use by Passport.
+passport.use(new LocalStrategy(
+  (username, password, cb) => {
+    db.users.findByUsername(username, (err, user) => {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+  }));
+
+// Passport authenticated session persistence.
+passport.serializeUser((user, cb) => {
+  cb(null, user.id);
+});
+
+passport.deserializeUser((id, cb) => {
+  db.users.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+// Configure view engine to render pug templates.
+app.set('views', `${__dirname}/views`);
+app.set('view engine', 'pug');
+
+// Use application-level middleware for common functionality, including
+// logging, parsing, and session handling.
+app.use(morgan);
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+// Initialize Passport and restore authentication state, if any, from the session.
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect routes
+app.use('/', routes);
+
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Error handlers
+app.use((err, req, res) => {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: err
+  });
+});
+
+app.listen(3000);
+
