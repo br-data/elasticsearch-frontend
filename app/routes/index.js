@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
+const elastic = require('elasticsearch');
+const elasticClient = new elastic.Client({ host: 'localhost:9200' });
+const elasticIndex = 'kuckucksnest';
+
 const checkLogin = require('../lib/checkLogin')
 
 // Define routes
@@ -33,5 +37,38 @@ router.get('/profile',
   (req, res) => {
     res.render('profile', { user: req.user });
   });
+
+router.get('/match/:query',
+  checkLogin(),
+  (req, res) => {
+
+  const query = req.params.query;
+
+  elasticClient.search({
+    elasticIndex,
+    size: 500,
+    body: {
+      query: {
+        multi_match: {
+          query,
+          type: 'phrase',
+          fields: ['body', 'body.folded']
+        }
+      },
+      _source: {
+        excludes: ['body*']
+      },
+      highlight: {
+        fields: {
+          body: {},
+          'body.folded': {}
+        }
+      }
+    }
+  }, (err, data) => {
+
+    res.render('result', { user: req.user, result: data.hits.hits  });
+  });
+});
 
 module.exports = router;

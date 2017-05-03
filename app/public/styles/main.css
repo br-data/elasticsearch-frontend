@@ -142,7 +142,7 @@ input:-webkit-autofill {
 
 .options > div {
   display: inline-block;
-  #fff-space: nowrap;
+  white-space: nowrap;
 }
 
 .options strong {
@@ -152,16 +152,6 @@ input:-webkit-autofill {
 
 .options label {
   margin-right: .5em;
-}
-
-#results {
-  opacity: 0;
-}
-
-#results.visible {
-
-  opacity: 1;
-  transition: opacity .25s ease;
 }
 
 .document {

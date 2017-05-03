@@ -1,0 +1,16 @@
+extends search
+
+block result
+
+  .count
+    p #{result.total} hits in XX documents (XX ms)
+
+  each doc in result
+    .document
+      .download
+        a.pdf(href=doc._source.file target='blank') PDF
+        a.text(href=doc._source.file target='blank') Text
+      .header.doc
+        span.title #{doc._source.name}
+      each hit in doc.highlight.body
+        p.hit!=hit

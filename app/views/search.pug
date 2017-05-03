@@ -2,6 +2,41 @@ extends layout
 
 block content
 
-  h1 Welcome to the search
-  p Hello #{user.username}. View your <a href="/profile">profile</a>.
+  p Hello #{user.displayName}. View your <a href="/profile">profile</a>.
 
+  header
+    section.center
+      h1 Mammon Search
+      p Search the Jornal Oficial da Região Autónoma da Madeira:
+      form
+        fieldset
+          input#search(type='search', autofocus='')
+          button#button(type='button')
+            div
+              span Search
+              #loading.loading
+        fieldset.options.mode
+          strong Mode:
+          div
+            input#match(type='radio', name='mode', value='match', checked='')
+            label(for='match') Standard
+          div
+            input#custom(type='radio', name='mode', value='custom')
+            label(for='custom') Custom
+          div
+            input#fuzzy(type='radio', name='mode', value='fuzzy')
+            label(for='fuzzy') Fuzzy
+          div
+            input#regex(type='radio', name='mode', value='regexp')
+            label(for='regex') Regex
+        fieldset#sorting.options.sorting
+          strong Sort:
+          div
+            input#date(type='radio', name='sorting', value='date', checked='')
+            label(for='date') Date
+          div
+            input#relevance(type='radio', name='sorting', value='relevance')
+            label(for='relevance') Relevance
+
+  section#result.result.center
+    block result
