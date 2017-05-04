@@ -38,11 +38,13 @@ router.get('/profile',
     res.render('profile', { user: req.user });
   });
 
-router.get('/match/:query',
+router.get('/search',
   checkLogin(),
   (req, res) => {
 
-    const query = req.params.query;
+    console.log(req.query.query);
+    console.log(req.query.mode);
+    console.log(req.query.sorting);
 
     elasticClient.search({
       elasticIndex,
@@ -50,7 +52,7 @@ router.get('/match/:query',
       body: {
         query: {
           multi_match: {
-            query,
+            query: req.query.query,
             type: 'phrase',
             fields: ['body', 'body.folded']
           }
@@ -67,7 +69,7 @@ router.get('/match/:query',
       }
     }, (error, data) => {
 
-      const result = data.hits.hits ? data.hits.hits : {};
+      const result = data ? data.hits.hits : {};
 
       res.render('result', { user: req.user, result: result, error: error });
     });

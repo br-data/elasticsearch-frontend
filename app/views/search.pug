@@ -8,9 +8,9 @@ block content
     section.center
       h1 Mammon Search
       p Search the Jornal Oficial da Região Autónoma da Madeira:
-      form(onSubmit='search()')
+      form(action='search')
         fieldset
-          input#search(type='search', autofocus='')
+          input#search(type='search', name='query', autofocus='')
           button#button(type='submit')
             div
               span Search

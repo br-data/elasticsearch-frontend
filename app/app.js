@@ -50,11 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false,
-  // cookie: {
-  //   secure: true,
-  //   maxAge: 3600000
-  // }
+  saveUninitialized: false
 }));
 
 // Initialize Passport and restore authentication state, if any, from the session.

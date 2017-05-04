@@ -1,3 +1,1 @@
-function search() {
-  console.log('Searching...');
-}
+console.log('Script loaded');
