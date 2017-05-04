@@ -1,5 +1,5 @@
 const express = require('express');
-const expressSession = require('express-session');
+const session = require('express-session');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -47,7 +47,15 @@ app.set('view engine', 'pug');
 app.use(morgan);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  // cookie: {
+  //   secure: true,
+  //   maxAge: 3600000
+  // }
+}));
 
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
