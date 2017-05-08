@@ -2,41 +2,49 @@ extends layout
 
 block content
 
-  p Hello #{user.displayName}. View your <a href="/profile">profile</a>.
+  script(src='/search.js')
 
   header
+
+    p.center Hello #{user.displayName}. <a href="/logout">Log out</a>.
+
     section.center
+
       h1 Mammon Search
       p Search the Jornal Oficial da Região Autónoma da Madeira:
+
       form(action='search')
+
         fieldset
-          input#search(type='search', name='query', autofocus='')
-          button#button(type='submit')
+          input.search(type='search', name='query', autofocus='')
+          button.submit(type='submit')
             div
               span Search
-              #loading.loading
+              div.loading
+
         fieldset.options.mode
           strong Mode:
           div
-            input#match(type='radio', name='mode', value='match', checked='')
-            label(for='match') Standard
+            input(type='radio', name='mode', value='match', checked='')
+            label Standard
           div
-            input#custom(type='radio', name='mode', value='custom')
-            label(for='custom') Custom
+            input(type='radio', name='mode', value='custom')
+            label Custom
           div
-            input#fuzzy(type='radio', name='mode', value='fuzzy')
-            label(for='fuzzy') Fuzzy
+            input(type='radio', name='mode', value='fuzzy')
+            label Fuzzy
           div
-            input#regex(type='radio', name='mode', value='regexp')
-            label(for='regex') Regex
-        fieldset#sorting.options.sorting
+            input(type='radio', name='mode', value='regexp')
+            label Regex
+
+        fieldset.options.sorting
           strong Sort:
           div
-            input#date(type='radio', name='sorting', value='date', checked='')
-            label(for='date') Date
+            input(type='radio', name='sorting', value='date', checked='')
+            label Date
           div
-            input#relevance(type='radio', name='sorting', value='relevance')
-            label(for='relevance') Relevance
+            input(type='radio', name='sorting', value='relevance')
+            label Relevance
 
   section#result.result.center
     block result
