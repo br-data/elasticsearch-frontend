@@ -2,15 +2,12 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-const elastic = require('elasticsearch');
-const elasticClient = new elastic.Client({ host: 'localhost:9200' });
-const elasticIndex = 'kuckucksnest';
-
 const checkLogin = require('../lib/checkLogin');
+const queryElastic = require('../lib/queryElastic');
 
 // Define routes
 router.get('/',
-  checkLogin(),
+  checkLogin({ redirectTo: 'login' }),
   (req, res) => {
     res.render('search', { user: req.user });
   });
@@ -27,46 +24,21 @@ router.post('/login',
   });
 
 router.get('/logout',
-  checkLogin(),
+  checkLogin({ redirectTo: 'login' }),
   (req, res) => {
     req.logout();
     res.redirect('/');
   });
 
 router.get('/search',
-  checkLogin(),
+  checkLogin({ redirectTo: 'login' }),
+  queryElastic(),
   (req, res) => {
-
-    console.log(req.query.query);
-    console.log(req.query.mode);
-    console.log(req.query.sorting);
-
-    elasticClient.search({
-      elasticIndex,
-      size: 500,
-      body: {
-        query: {
-          multi_match: {
-            query: req.query.query,
-            type: 'phrase',
-            fields: ['body', 'body.folded']
-          }
-        },
-        _source: {
-          excludes: ['body*']
-        },
-        highlight: {
-          fields: {
-            body: {},
-            'body.folded': {}
-          }
-        }
-      }
-    }, (error, data) => {
-
-      const result = data ? data.hits.hits : {};
-
-      res.render('result', { user: req.user, result: result, error: error });
+    console.log(req.result);
+    res.render('result', {
+      error: req.error,
+      result: req.result,
+      user: req.user
     });
   });
 
