@@ -8,9 +8,9 @@ block result
 
   else
     .count
-      p #{result.total} hits in XX documents (XX ms)
+      p Found #{result.hits.total} documents (#{result.took} ms)
 
-    each doc in result
+    each doc in result.hits.hits
       .document
         .download
           a.pdf(href=doc._source.file target='blank') PDF

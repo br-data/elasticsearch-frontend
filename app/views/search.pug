@@ -4,11 +4,13 @@ block content
 
   script(src='/search.js')
 
-  header
+  header.search
 
-    p.center Hello #{user.displayName}. <a href="/logout">Log out</a>.
+    nav.user
+      i(class='icon-user')
+      span #{user.displayName} (<a href="/logout">Log out</a>)
 
-    section.center
+    div.center
 
       h1 Mammon Search
       p Search the Jornal Oficial da Região Autónoma da Madeira:
@@ -16,7 +18,7 @@ block content
       form(action='search')
 
         fieldset
-          input.search(type='search', name='query', autofocus='')
+          input.input(type='search' name='query' autofocus='')
           button.submit(type='submit')
             div
               span Search
@@ -25,26 +27,26 @@ block content
         fieldset.options.mode
           strong Mode:
           div
-            input(type='radio', name='mode', value='match', checked='')
+            input(type='radio' name='mode' value='match' checked='')
             label Standard
           div
-            input(type='radio', name='mode', value='custom')
+            input(type='radio' name='mode' value='custom')
             label Custom
           div
-            input(type='radio', name='mode', value='fuzzy')
+            input(type='radio' name='mode' value='fuzzy')
             label Fuzzy
           div
-            input(type='radio', name='mode', value='regexp')
+            input(type='radio' name='mode' value='regexp')
             label Regex
 
         fieldset.options.sorting
           strong Sort:
           div
-            input(type='radio', name='sorting', value='date', checked='')
+            input(type='radio' name='sorting' value='date' checked='')
             label Date
           div
-            input(type='radio', name='sorting', value='relevance')
+            input(type='radio' name='sorting' value='relevance')
             label Relevance
 
-  section#result.result.center
+  section.result.center
     block result

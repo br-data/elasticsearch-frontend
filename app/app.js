@@ -26,7 +26,6 @@ passport.use(new LocalStrategy(
     });
   }));
 
-// Passport authenticated session persistence.
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
@@ -52,11 +51,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect routes
 app.use('/', routes);
