@@ -27,15 +27,10 @@ router.post('/login',
   });
 
 router.get('/logout',
+  checkLogin(),
   (req, res) => {
     req.logout();
     res.redirect('/');
-  });
-
-router.get('/profile',
-  checkLogin(),
-  (req, res) => {
-    res.render('profile', { user: req.user });
   });
 
 router.get('/search',

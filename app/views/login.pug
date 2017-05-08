@@ -2,16 +2,21 @@ extends layout
 
 block content
 
-  form(action='/login' method='post')
+  div.login
 
-    div
-      label Username:
-      input(type='text' name='username')
+    form(action='/login' method='post')
 
-    div
-      label Password:
-      input(type='password' name='password')
+      h1 Mammon Search
 
-    div
-      input(type='submit' value='Submit')
+      fieldset
+        label Username:
+        br
+        input(type='text' name='username')
 
+      fieldset
+        label Password:
+        br
+        input(type='password' name='password')
+
+      fieldset
+        input.submit(type='submit' value='Login')
