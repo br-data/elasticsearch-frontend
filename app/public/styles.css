@@ -44,6 +44,21 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
+::-webkit-input-placeholder {
+  color: #889;
+}
+:-moz-placeholder {
+ color: #889;
+ opacity: 1;
+}
+::-moz-placeholder {
+ color: #889;
+ opacity: 1;
+}
+:-ms-input-placeholder {
+ color: #889;
+}
+
 .center {
   width: 100%;
   max-width: 840px;
@@ -63,6 +78,11 @@ input:-webkit-autofill {
   margin: .5em 0;
 }
 
+.login fieldset.background {
+  background: #ccd;
+  border-radius: 4px;
+}
+
 .login input {
   width: 100%;
   padding: 0 .4em;
@@ -75,17 +95,12 @@ input:-webkit-autofill {
   border-color: #6da56d;
 }
 
-.login .wrapper {
-  background: #ccd;
-  border-radius: 4px;
-}
-
 .login .icon {
-  color: #334;
-  float: left;
+  color: #fff;
+  float: right;
   line-height: 2;
   text-align: center;
-  width: 30px;
+  width: 40px;
 }
 
 .login .input {
@@ -100,7 +115,7 @@ input:-webkit-autofill {
   color: #fff;
   background: #6da56d;
   border: 0;
-  border-radius :4px;
+  border-radius: 4px;
   cursor: pointer;
   padding: 0 10px;
   transition: background .2s ease;
@@ -172,18 +187,8 @@ input:-webkit-autofill {
   background: #4f874f;
 }
 
-.search .submit div {
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: text-bottom;
-}
-
-.search .submit span {
-  margin-right: .6em;
-}
-
-.search .submit .loading {
-  visibility: hidden;
+.search .submit i {
+  margin-left: 5px;
 }
 
 .search .mode {

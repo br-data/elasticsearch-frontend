@@ -1,11 +1,12 @@
-document.addEventListener('DOMContentLoaded', init, false);
+document.addEventListener('DOMContentLoaded', changeIcon, false);
 
-function init() {
-  var $loading = document.querySelector('.loading');
+function changeIcon() {
+  var $icon = document.querySelector('.icon-search');
   var $submit = document.querySelector('.submit');
 
-  $submit.addEventListener('click', function () {
-
-    $loading.style.visibility = 'visible';
-  }, false);
+  if ($icon) {
+    $submit.addEventListener('click', function () {
+      $icon.className = 'icon-spinner';
+    }, false);
+  }
 }

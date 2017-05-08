@@ -18,11 +18,10 @@ block content
       form(action='search')
 
         fieldset
-          input.input(type='search' name='query' autofocus='')
+          input.input(type='search' name='query' autofocus='' placeholder='Start searching')
           button.submit(type='submit')
-            div
-              span Search
-              div.loading
+            span Search
+              i.icon-search
 
         fieldset.options.mode
           strong Mode:

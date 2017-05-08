@@ -34,7 +34,6 @@ router.get('/search',
   checkLogin({ redirectTo: 'login' }),
   queryElastic(),
   (req, res) => {
-    console.log(req.result);
     res.render('result', {
       error: req.error,
       result: req.result,
