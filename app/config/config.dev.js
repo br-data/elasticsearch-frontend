@@ -2,7 +2,7 @@ const config = {};
 
 config.page = {
   'title': 'Kuckucksnest Search',
-  'description': 'Search the Kuckucksnest documents for persons, companies and addresses'
+  'description': 'Search the Kuckucksnest documents for persons, companies and addresses.'
 };
 
 config.elastic = {

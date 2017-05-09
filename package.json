@@ -10,21 +10,20 @@
     "url": "git@github.com:digitalegarage/kuckucksnest-analyse.git"
   },
   "dependencies": {
-    "elasticsearch": "^11.0.1",
-    "express": "^4.15.2",
-    "node-dir": "^0.1.16",
-    "tika": "git@github.com:ICIJ/node-tika.git",
-
     "body-parser": "^1.13.3",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.3.5",
     "ejs": "^2.3.3",
+    "elasticsearch": "^11.0.1",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "morgan": "^1.6.1",
+    "node-dir": "^0.1.16",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-rc.1"
+    "pug": "^2.0.0-rc.1",
+    "req-flash": "0.0.3",
+    "tika": "git@github.com:ICIJ/node-tika.git"
   },
   "devDependencies": {
     "eslint-config-esnext": "^1.6.0"

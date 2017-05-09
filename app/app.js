@@ -7,7 +7,7 @@ const app = express();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const morgan = require('morgan')('combined');
+const flash = require('req-flash');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
@@ -23,8 +23,8 @@ passport.use(new LocalStrategy(
   (username, password, callback) => {
     findUser.byUsername(username, config.users, (err, user) => {
       if (err) { return callback(err); }
-      if (!user) { return callback(null, false); }
-      if (user.password != password) { return callback(null, false); }
+      if (!user) { return callback(null, false, { message: 'Could not find user.' }); }
+      if (user.password != password) { return callback(null, false, { message: 'Wrong password. Try again.' }); }
       return callback(null, user);
     });
   }));
@@ -46,7 +46,6 @@ app.set('view engine', 'pug');
 
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
-app.use(morgan);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
@@ -54,6 +53,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Initialize Passport and restore authentication state, if any, from the session.
@@ -80,4 +80,3 @@ app.use((err, req, res) => {
 });
 
 app.listen(3000);
-

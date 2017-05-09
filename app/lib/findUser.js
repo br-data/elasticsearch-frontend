@@ -16,7 +16,7 @@ function findById (id, database, callback) {
     if (database[idx]) {
       callback(null, database[idx]);
     } else {
-      callback(new Error(`User ${id} does not exist`));
+      callback(new Error({ message: 'Could not find user.' }));
     }
   });
 }

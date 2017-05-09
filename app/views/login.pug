@@ -7,8 +7,10 @@ block content
     form(action='/login' method='post')
 
       h1=page.title
-
       p=page.description
+
+      p.error
+        strong #{error.message} &nbsp;
 
       fieldset.background
         span.icon

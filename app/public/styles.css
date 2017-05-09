@@ -59,6 +59,14 @@ input:-webkit-autofill {
  color: #889;
 }
 
+.error {
+  color: #b22222;
+}
+
+.warning {
+  color: #ffa500;
+}
+
 .center {
   width: 100%;
   max-width: 840px;
@@ -268,34 +276,6 @@ input:-webkit-autofill {
 
 .result .count p:first-child {
   font-weight: bold;
-}
-
-.result .error {
-  color: #b22222;
-}
-
-.result .warning {
-  color: #ffa500;
-}
-
-.loading {
-  border-radius: 50%;
-  width: 19px;
-  height: 19px;
-  border: 3px solid rgba(255, 255, 255, .2);
-  border-top-color: #fff;
-  animation: spin 1s infinite linear;
-  margin: 0;
-}
-
-@keyframes spin {
-
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @media all and (max-width: 360px) {
