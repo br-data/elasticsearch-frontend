@@ -1,7 +1,9 @@
 // Queries Elasticsearch for data using different methods
 const elastic = require('elasticsearch');
-const elasticClient = new elastic.Client({ host: 'localhost:9200' });
-const elasticIndex = 'kuckucksnest';
+const config = require('../config');
+
+const elasticClient = new elastic.Client(config.elastic.host);
+const elasticIndex = config.elastic.index;
 
 function queryElastic() {
   return (req, res, next) => {

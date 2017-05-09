@@ -1,5 +1,8 @@
+const path = require('path');
+
 const express = require('express');
 const session = require('express-session');
+const app = express();
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -7,33 +10,33 @@ const LocalStrategy = require('passport-local').Strategy;
 const morgan = require('morgan')('combined');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const path = require('path');
 
-const db = require('./db');
-const routes = require('./routes/index');
+const routes = require('./routes');
+const findUser = require('./lib/findUser');
 
-// Create a new Express application.
-const app = express();
+const config = require('./config');
+
+app.locals.page = config.page;
 
 // Configure the local strategy for use by Passport.
 passport.use(new LocalStrategy(
-  (username, password, cb) => {
-    db.users.findByUsername(username, (err, user) => {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      return cb(null, user);
+  (username, password, callback) => {
+    findUser.byUsername(username, config.users, (err, user) => {
+      if (err) { return callback(err); }
+      if (!user) { return callback(null, false); }
+      if (user.password != password) { return callback(null, false); }
+      return callback(null, user);
     });
   }));
 
-passport.serializeUser((user, cb) => {
-  cb(null, user.id);
+passport.serializeUser((user, callback) => {
+  callback(null, user.id);
 });
 
-passport.deserializeUser((id, cb) => {
-  db.users.findById(id, (err, user) => {
-    if (err) { return cb(err); }
-    cb(null, user);
+passport.deserializeUser((id, callback) => {
+  findUser.byId(id, config.users, (err, user) => {
+    if (err) { return callback(err); }
+    callback(null, user);
   });
 });
 

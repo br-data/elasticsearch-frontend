@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const passport = require('passport');
 
 const checkLogin = require('../lib/checkLogin');
@@ -9,7 +10,10 @@ const queryElastic = require('../lib/queryElastic');
 router.get('/',
   checkLogin({ redirectTo: 'login' }),
   (req, res) => {
-    res.render('search', { user: req.user });
+    res.render('search', {
+      page: req.app.locals.page,
+      user: req.user
+    });
   });
 
 router.get('/login',
