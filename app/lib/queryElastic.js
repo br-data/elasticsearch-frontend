@@ -15,18 +15,20 @@ function queryElastic() {
 }
 
 function buildQuery(req) {
-  const index = config.database.index;
+
   let query = config.queries[req.query.type];
-  const _source = config._source;
-  const highlight = config.highlight;
 
   query.setQuery(req.query.query);
   query = query.query;
 
   return {
-    index,
+    index: config.database.index,
     size: 500,
-    body: { query, _source, highlight }
+    body: {
+      query: query,
+      _source: config._source,
+      highlight: config.highlight
+    }
   };
 }
 

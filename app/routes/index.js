@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
 const passport = require('passport');
-
 const checkLogin = require('../lib/checkLogin');
 const queryElastic = require('../lib/queryElastic');
 

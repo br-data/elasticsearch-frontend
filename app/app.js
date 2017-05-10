@@ -63,19 +63,22 @@ app.use(passport.session());
 // Connect routes
 app.use('/', routes);
 
-// Catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// Handle 404 errors
+app.use(function(req, res) {
+  res.status(404);
+  res.render('error', {
+    title: 'Page not Found (404)',
+    url: req.url
+  });
 });
 
-// Error handlers
-app.use((err, req, res) => {
-  res.status(err.status || 500);
+// Handle 500 internal server errors
+app.use(function(err, req, res) {
+  res.status(500);
   res.render('error', {
-    message: err.message,
-    error: err
+    title: 'Internal Server Error (500)',
+    error: err,
+    url: req.url
   });
 });
 

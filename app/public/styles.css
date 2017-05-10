@@ -134,7 +134,7 @@ input:-webkit-autofill {
   background: #4f874f;
 }
 
-.search {
+.search, .fail {
   background: #fff;
   padding: 2em 0 3em;
   margin-bottom: 3em;
