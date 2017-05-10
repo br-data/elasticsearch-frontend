@@ -54,7 +54,7 @@ config.queries = {
       this.query.fuzzy.body = query;
     }
   },
-  regex: {
+  regexp: {
     name: 'Regex Search',
     query: {
       regexp: {

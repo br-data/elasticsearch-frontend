@@ -18,7 +18,13 @@ block content
       form(action='search')
 
         fieldset
-          input.input(type='search' name='query' autofocus='' placeholder='Start searching')
+          input.input(
+            type='search'
+            name='query'
+            autofocus=''
+            placeholder='Start searching'
+            value=(query.query ? query.query : '')
+          )
           button.submit(type='submit')
             span Search
               i.icon-search
@@ -26,25 +32,55 @@ block content
         fieldset.options.type
           strong Type:
           div
-            input(type='radio' name='type' value='match' checked='')
+            input(
+              type='radio'
+              name='type'
+              value='match'
+              checked=(query.type === 'match' ? 'checked' : '')
+            )
             label Standard
           div
-            input(type='radio' name='type' value='custom')
+            input(
+              type='radio'
+              name='type'
+              value='custom'
+              checked=(query.type === 'custom' ? 'checked' : false)
+            )
             label Custom
           div
-            input(type='radio' name='type' value='fuzzy')
+            input(
+              type='radio'
+              name='type'
+              value='fuzzy'
+              checked=(query.type === 'fuzzy' ? 'checked' : false)
+            )
             label Fuzzy
           div
-            input(type='radio' name='type' value='regexp')
+            input(
+              type='radio'
+              name='type'
+              value='regexp'
+              checked=(query.type === 'regexp' ? 'checked' : false)
+            )
             label Regex
 
-        fieldset.options.sorting
+        fieldset.options.sort
           strong Sort:
           div
-            input(type='radio' name='sorting' value='date' checked='')
+            input(
+              type='radio'
+              name='sorting'
+              value='date'
+              checked=(query.sorting === 'date' ? 'checked' : '')
+            )
             label Date
           div
-            input(type='radio' name='sorting' value='relevance')
+            input(
+              type='radio'
+              name='sorting'
+              value='relevance'
+              checked=(query.sorting === 'relevance' ? 'checked' : false)
+            )
             label Relevance
 
   section.result.center

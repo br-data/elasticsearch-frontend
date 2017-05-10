@@ -11,7 +11,9 @@ router.get('/',
   checkLogin({ redirectTo: 'login' }),
   (req, res) => {
     res.render('search', {
-      page: req.app.locals.page,
+      error: req.error,
+      result: req.result,
+      query: req.query,
       user: req.user
     });
   });
@@ -46,6 +48,7 @@ router.get('/search',
     res.render('result', {
       error: req.error,
       result: req.result,
+      query: req.query,
       user: req.user
     });
   });

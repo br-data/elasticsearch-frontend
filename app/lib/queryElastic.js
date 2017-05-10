@@ -15,7 +15,6 @@ function queryElastic() {
 }
 
 function buildQuery(req) {
-
   const index = config.database.index;
   let query = config.queries[req.query.type];
   const _source = config._source;
