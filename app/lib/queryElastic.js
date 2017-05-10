@@ -2,12 +2,12 @@
 const elastic = require('elasticsearch');
 const config = require('../config');
 
-const elasticClient = new elastic.Client(config.elastic.host);
-const elasticIndex = config.elastic.index;
+const elasticClient = new elastic.Client(config.database.host);
+const elasticIndex = config.database.index;
 
 function queryElastic() {
   return (req, res, next) => {
-    elasticClient.search(useMultiMatch(req.query), (error, data) => {
+    elasticClient.search(buildQuery(req), (error, data) => {
       req.error = error;
       req.result = data;
       next();
@@ -15,18 +15,12 @@ function queryElastic() {
   };
 }
 
-function useMultiMatch(query) {
-  return {
+function buildQuery(req) {
+  let body = {
     elasticIndex,
     size: 500,
     body: {
-      query: {
-        multi_match: {
-          query: query.query,
-          type: 'phrase',
-          fields: ['body', 'body.folded']
-        }
-      },
+      query: undefined,
       _source: {
         excludes: ['body*']
       },
@@ -38,6 +32,12 @@ function useMultiMatch(query) {
       }
     }
   };
+  let query = config.queryTypes[req.query.type];
+
+  query.setQuery(req.query.query);
+  body.body.query = query.query;
+
+  return query;
 }
 
 module.exports = queryElastic;
