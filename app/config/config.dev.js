@@ -15,7 +15,7 @@ config.database = {
   index: 'kuckucksnest'
 };
 
-config.queryTypes = {
+config.queries = {
   match: {
     name: 'Standard Search',
     query: {
@@ -64,6 +64,17 @@ config.queryTypes = {
     setQuery: function (query) {
       this.query.regexp.body = query;
     }
+  }
+};
+
+config._source = {
+  excludes: ['body*']
+};
+
+config.highlight = {
+  fields: {
+    body: {},
+    'body.folded': {}
   }
 };
 

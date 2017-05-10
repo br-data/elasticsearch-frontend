@@ -2,8 +2,7 @@
 const elastic = require('elasticsearch');
 const config = require('../config');
 
-const elasticClient = new elastic.Client(config.database.host);
-const elasticIndex = config.database.index;
+const elasticClient = new elastic.Client({ host: config.database.host });
 
 function queryElastic() {
   return (req, res, next) => {
@@ -16,28 +15,20 @@ function queryElastic() {
 }
 
 function buildQuery(req) {
-  let body = {
-    elasticIndex,
-    size: 500,
-    body: {
-      query: undefined,
-      _source: {
-        excludes: ['body*']
-      },
-      highlight: {
-        fields: {
-          body: {},
-          'body.folded': {}
-        }
-      }
-    }
-  };
-  let query = config.queryTypes[req.query.type];
+
+  const index = config.database.index;
+  let query = config.queries[req.query.type];
+  const _source = config._source;
+  const highlight = config.highlight;
 
   query.setQuery(req.query.query);
-  body.body.query = query.query;
+  query = query.query;
 
-  return query;
+  return {
+    index,
+    size: 500,
+    body: { query, _source, highlight }
+  };
 }
 
 module.exports = queryElastic;
