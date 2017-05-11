@@ -30,13 +30,20 @@
 }
 
 .icon-logout:before { content: '\e800'; } /* '' */
-.icon-user:before { content: '\e802'; } /* '' */
-.icon-search:before { content: '\e803'; } /* '' */
-.icon-lock:before { content: '\e804'; } /* '' */
+.icon-login:before { content: '\e801'; } /* '' */
+.icon-search:before { content: '\e802'; } /* '' */
+.icon-user:before { content: '\e804'; } /* '' */
+.icon-lock:before { content: '\e803'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
+.icon-upload-cloud:before { content: '\f0ee'; } /* '' */
 .icon-doc-text:before { content: '\f0f6'; } /* '' */
-.icon-lock-open-alt:before { content: '\f13e'; } /* '' */
-.icon-file-pdf:before { content: '\f1c1'; } /* '' */
 .icon-spinner:before { content: '\f110'; } /* '' */
+.icon-help:before { content: '\f128'; } /* '' */
+.icon-lock-open-alt:before { content: '\f13e'; } /* '' */
+.icon-doc-inv:before { content: '\f15b'; } /* '' */
+.icon-doc-text-inv:before { content: '\f15c'; } /* '' */
+.icon-sort-alt-down:before { content: '\f161'; } /* '' */
+.icon-file-pdf:before { content: '\f1c1'; } /* '' */
 
 .icon-spinner {
   display: inline-block;
