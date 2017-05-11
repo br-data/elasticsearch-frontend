@@ -1,17 +1,19 @@
 nav.navigation
 
   span
-    i(class='icon-search')
-    a(href='/') Search
+    a(href='/')
+      i(class='icon-search')
+      | Search
   span
-    i(class='icon-upload-cloud')
+    a(href='#')
+      i(class='icon-upload-cloud')
+      | Import
   span
-    i(class='icon-help')
-    a(href='/help') Help
+    a(href='/help')
+      i(class='icon-help')
+      | Help
 
   span.right
-    i(class='icon-logout')
-    a(href='/logout') Logout
-  span.right
-    i(class='icon-user')
-    a(href='/profile') #{user.displayName}
+    a(href='/logout')
+      i(class='icon-logout')
+      | Logout

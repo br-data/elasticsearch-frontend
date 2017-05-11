@@ -6,8 +6,8 @@ block content
 
     form(action='/login' method='post')
 
-      h1=page.title
-      p=page.description
+      h1.title=page.title
+      p.description=page.description
 
       p.fail
         strong #{error.message} &nbsp;
@@ -16,13 +16,22 @@ block content
         span.icon
           i(class='icon-user')
         span.input
-          input(type='text' name='username' autofocus='' placeholder='Username')
+          input(
+            type='text'
+            name='username'
+            placeholder='Username'
+          )
 
       fieldset.background
         span.icon
           i(class='icon-lock-open-alt')
         span.input
-          input(type='password' name='password' placeholder='Password')
+          input(
+            type='password'
+            name='password'
+            placeholder='Password'
+          )
 
       fieldset
-        input.submit(type='submit' value='Login')
+        button.submit(type='submit' value='Login') Login
+          i.icon-login
