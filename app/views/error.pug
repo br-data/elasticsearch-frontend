@@ -2,16 +2,16 @@ extends layout
 
 block content
 
-  div.fail
+  .error
 
-    div.center
+    .center
 
       h1=title
 
       p Sorry for the inconvenience. Return to the <a href="/">homepage.</a>
 
       if error
-        p.error
+        p.fail
           strong=error.message
 
         pre=message.stack

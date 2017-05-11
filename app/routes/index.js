@@ -51,4 +51,16 @@ router.get('/search',
     });
   });
 
+router.get('/help',
+  checkLogin({ redirectTo: 'login' }),
+  (req, res) => {
+    res.render('help', {
+      error: req.error,
+      result: req.result,
+      query: req.query,
+      user: req.user
+    });
+  });
+
+
 module.exports = router;

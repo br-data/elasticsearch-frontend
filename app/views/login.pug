@@ -2,14 +2,14 @@ extends layout
 
 block content
 
-  div.login
+  .login
 
     form(action='/login' method='post')
 
       h1=page.title
       p=page.description
 
-      p.error
+      p.fail
         strong #{error.message} &nbsp;
 
       fieldset.background

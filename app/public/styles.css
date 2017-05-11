@@ -19,6 +19,16 @@ h1 {
   font-size: 1.5em;
 }
 
+h2 {
+  margin-top: 0;
+  color: #4f874f;
+}
+
+h3 {
+  margin: 1.5em 0 0.5em;
+  font-size: 1em;
+}
+
 a {
   color: inherit;
 }
@@ -59,7 +69,7 @@ input:-webkit-autofill {
  color: #889;
 }
 
-.error {
+.fail {
   color: #b22222;
 }
 
@@ -87,7 +97,7 @@ input:-webkit-autofill {
 }
 
 .login fieldset.background {
-  background: #ccd;
+  background: #334;
   border-radius: 4px;
 }
 
@@ -96,7 +106,9 @@ input:-webkit-autofill {
   padding: 0 .4em;
   height: 2em;
   border: 2px solid #ccd;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-right: 0;
 }
 
 .login input:focus {
@@ -134,22 +146,30 @@ input:-webkit-autofill {
   background: #4f874f;
 }
 
-.search, .fail {
+.search, .error, .help {
   background: #fff;
   padding: 2em 0 3em;
   margin-bottom: 3em;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
 }
 
-.search .user {
+.navigation .help-button {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.navigation {
   font-size: .8em;
   color: #fff;
   background: #334;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-bottom-left-radius: 4px;
   padding: .5em;
+}
+
+.navigation .right {
+  float: right;
+}
+.navigation span {
+  margin: 0 .5em;
 }
 
 .search .input,

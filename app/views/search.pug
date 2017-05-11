@@ -2,13 +2,12 @@ extends layout
 
 block content
 
+  script(src='/modal.js')
   script(src='/search.js')
 
-  section.search
+  include navigation
 
-    nav.user
-      i(class='icon-user')
-      span #{user.displayName} (<a href="/logout">Log out</a>)
+  header.search
 
     div.center
 

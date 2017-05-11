@@ -73,8 +73,8 @@ config._source = {
 
 config.highlight = {
   fields: {
-    body: {},
-    'body.folded': {}
+    body: {}
+    //'body.folded': {}
   }
 };
 

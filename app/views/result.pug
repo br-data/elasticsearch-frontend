@@ -3,7 +3,7 @@ extends search
 block result
 
   if error
-    p.error
+    p.fail
       strong=error.message
 
   else
@@ -13,8 +13,12 @@ block result
     each doc in result.hits.hits
       .document
         .download
-          a.pdf(href=doc._source.file target='blank') PDF
-          a.text(href=doc._source.file target='blank') Text
+          a.pdf(href=doc._source.file target='blank')
+            i(class='icon-file-pdf')
+            span PDF
+          a.text(href=doc._source.file target='blank')
+            i(class='icon-doc-text')
+            span Text
         .header.doc
           span.title #{doc._source.name}
         each hit in doc.highlight.body
