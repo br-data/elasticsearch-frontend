@@ -1,0 +1,37 @@
+extends layout
+
+block content
+
+  .login
+
+    form(action='/login' method='post')
+
+      h1.title=page.title
+      p.description=page.description
+
+      p.fail
+        strong #{error.message} &nbsp;
+
+      fieldset.background
+        span.icon
+          i(class='icon-user')
+        span.input
+          input(
+            type='text'
+            name='username'
+            placeholder='Username'
+          )
+
+      fieldset.background
+        span.icon
+          i(class='icon-lock-open-alt')
+        span.input
+          input(
+            type='password'
+            name='password'
+            placeholder='Password'
+          )
+
+      fieldset
+        button.submit(type='submit' value='Login') Login
+          i.icon-login

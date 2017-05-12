@@ -11,8 +11,8 @@ block content
 
     div.center
 
-      h1=page.title
-      p=page.description
+      h1.title=page.title
+      p.description=page.description
 
       form(action='search')
 
@@ -20,13 +20,11 @@ block content
           input.input(
             type='search'
             name='query'
-            autofocus=''
             placeholder='Start searching'
             value=(query.query ? query.query : '')
           )
-          button.submit(type='submit')
-            span Search
-              i.icon-search
+          button.submit(type='submit') Search
+            i.icon-search
 
         fieldset.options.type
           strong Type:

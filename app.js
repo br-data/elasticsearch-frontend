@@ -16,8 +16,6 @@ const findUser = require('./lib/findUser');
 
 const config = require('./config');
 
-app.locals.page = config.page;
-
 // Configure the local strategy for use by Passport.
 passport.use(new LocalStrategy(
   (username, password, callback) => {
@@ -64,7 +62,7 @@ app.use(passport.session());
 app.use('/', routes);
 
 // Handle 404 errors
-app.use(function(req, res) {
+app.use((req, res) => {
   res.status(404);
   res.render('error', {
     title: 'Page not Found (404)',
@@ -73,7 +71,7 @@ app.use(function(req, res) {
 });
 
 // Handle 500 internal server errors
-app.use(function(err, req, res) {
+app.use((err, req, res) => {
   res.status(500);
   res.render('error', {
     title: 'Internal Server Error (500)',
@@ -82,4 +80,4 @@ app.use(function(err, req, res) {
   });
 });
 
-app.listen(3000);
+module.exports = app;
