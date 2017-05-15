@@ -14,14 +14,18 @@ body {
   background: #f0f0f4;
 }
 
+/*
+Global font style
+*/
+
 h1 {
   margin-top: 0;
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 h2 {
   margin-top: 0;
-  color: #4f874f;
+  font-size: 1.3em;
 }
 
 h3 {
@@ -33,18 +37,38 @@ a {
   color: inherit;
 }
 
+.fail {
+  color: #b22222;
+}
+
+.warning {
+  color: #ffa500;
+}
+
+.description {
+  margin-top: -.5em;
+}
+
+/*
+Global input element style
+*/
+
 fieldset {
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: .5em 0;
   min-width: 0;
 }
 
 input,
 button,
 label {
+  border: 0;
   font-size: 1em;
-  line-height: 1em;
+}
+
+input {
+  transition: border .2s ease;
 }
 
 input:focus,
@@ -74,13 +98,35 @@ input:-webkit-autofill {
   color: #889;
 }
 
-.fail {
-  color: #b22222;
+/*
+Specific element style
+*/
+
+.left {
+  overflow: hidden;
+  display: block;
 }
 
-.warning {
-  color: #ffa500;
+.left input {
+  width: 100%;
+  height: 2em;
+  line-height: 2;
+  padding: 0 .4em;
+  border: 2px solid #ccd;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-right: 0;
 }
+
+.right {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  float: right;
+}
+
+/*
+Global page layout
+*/
 
 .center {
   width: 100%;
@@ -89,61 +135,41 @@ input:-webkit-autofill {
   padding: 0 2em;
 }
 
-.description {
-  margin-top: -.5em;
-}
-
-.login {
-  margin: 2em auto;
-  max-width: 460px;
+.white {
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
-  padding: 2em;
+  padding: 2.5em 0 3em;
+  margin-bottom: 3em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
 }
 
-.login fieldset {
-  margin: .5em 0;
-}
+/*
+Login
+*/
 
-.login fieldset.background {
-  background: #334;
-  border-radius: 4px;
-}
-
-.login .input {
-  overflow: hidden;
-  display: block;
-}
-
-.login input {
-  width: 100%;
-  padding: 0 .4em;
-  height: 2em;
-  border: 2px solid #ccd;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-right: 0;
+.login .center {
+  max-width: 460px;
 }
 
 .login input:focus {
   border-color: #334;
 }
 
-.login .icon {
+.login .right {
+  height: 2em;
+  line-height: 2em;
   color: #fff;
-  float: right;
-  line-height: 2;
+  background: #334;
   text-align: center;
   width: 40px;
 }
 
 .login .submit {
+  margin-top: 1em;
   width: 100%;
   height: 2em;
   text-align: center;
   color: #fff;
-  background: #6da56d;
-  border: 0;
+  background: #2e8b57;
   border-radius: 4px;
   cursor: pointer;
   transition: background .2s ease;
@@ -151,17 +177,12 @@ input:-webkit-autofill {
 
 .login .submit:hover,
 .login .submit:focus {
-  background: #4f874f;
+  background: #21653f;
 }
 
-.search,
-.error,
-.help {
-  background: #fff;
-  padding: 2em 0 3em;
-  margin-bottom: 3em;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
-}
+/*
+Navigation bar
+*/
 
 .navigation {
   font-size: .8em;
@@ -178,7 +199,7 @@ input:-webkit-autofill {
   color: #fff;
 }
 
-.navigation .right {
+.navigation .logout {
   float: right;
 }
 
@@ -186,38 +207,26 @@ input:-webkit-autofill {
   margin: 0 .5em;
 }
 
-.search .input,
+/*
+Search
+*/
+
+.search .main {
+  margin: 1.5em 0 2em;
+}
+
+.search .left input:focus {
+  border-color: #2e8b57;
+}
+
 .search .submit {
   height: 2em;
-  display: inline-block;
-}
-
-.search .input {
-  width: calc(100% - 110px);
-  padding: 0 .4em;
-  border: 2px solid #ccd;
-  border-right: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  transition: border .2s ease;
-}
-
-.search .input:focus {
-  border-color: #6da56d;
-}
-
-.search .submit {
   width: 110px;
   float: right;
   color: #fff;
-  background: #6da56d;
-  border: 0;
+  background: #2e8b57;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
   cursor: pointer;
   text-align: left;
   padding: 2px 6px 3px 14px;
@@ -226,18 +235,18 @@ input:-webkit-autofill {
 
 .search .submit:hover,
 .search .submit:focus {
-  background: #4f874f;
+  background: #21653f;
 }
 
 .search .submit i {
   margin-left: 5px;
 }
 
-.search .type {
-  margin: 1em 0 .2em;
+.search .options.sort {
+  margin-top: -.25em;
 }
 
-.search .options>div {
+.search .options > div {
   display: inline-block;
   white-space: nowrap;
 }
@@ -250,6 +259,10 @@ input:-webkit-autofill {
 .search .options label {
   margin-right: .5em;
 }
+
+/*
+Results
+*/
 
 .result .document {
   margin: 20px 0 40px;
@@ -291,7 +304,7 @@ input:-webkit-autofill {
   border-radius: 3px;
   margin-right: 3px;
   text-decoration: none;
-  transition: background .2s ease, border .2s ease;
+  transition: background .2s ease;
 }
 
 .result .download a:hover {
@@ -312,30 +325,16 @@ input:-webkit-autofill {
   font-weight: bold;
 }
 
+/*
+Help
+*/
+
 .help ul {
   list-style: none;
   padding: 0;
 }
 
 .help code {
-  color: #4f874f;
+  color: #b22222;
   font-size: 1.2em;
-}
-
-
-@media all and (max-width: 360px) {
-  .search .input {
-    width: 100%;
-    border-right: 2px solid #ccd;
-    border-radius: 4px;
-  }
-  .search .submit {
-    width: 100%;
-    margin-top: .5em;
-    text-align: center;
-    border-radius: 4px;
-  }
-  .search .submit>div {
-    width: 100%;
-  }
 }

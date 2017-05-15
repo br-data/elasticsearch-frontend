@@ -2,36 +2,44 @@ extends layout
 
 block content
 
-  .login
+  include navigation
 
-    form(action='/login' method='post')
+  section.login.white
+
+    .center
 
       h1.title=page.title
       p.description=page.description
 
-      p.fail
-        strong #{error.message} &nbsp;
+      if error.message
+        p.fail
+          strong=error.message
+      else
+        p
+          strong Please log in to continue:
 
-      fieldset.background
-        span.icon
-          i(class='icon-user')
-        span.input
-          input(
-            type='text'
-            name='username'
-            placeholder='Username'
-          )
+      form(action='/login' method='post')
 
-      fieldset.background
-        span.icon
-          i(class='icon-lock-open-alt')
-        span.input
-          input(
-            type='password'
-            name='password'
-            placeholder='Password'
-          )
+        fieldset
+          span.right
+            i(class='icon-user')
+          span.left
+            input(
+              type='text'
+              name='username'
+              placeholder='Username'
+            )
 
-      fieldset
-        button.submit(type='submit' value='Login') Login
-          i.icon-login
+        fieldset
+          span.right
+            i(class='icon-lock-open-alt')
+          span.left
+            input(
+              type='password'
+              name='password'
+              placeholder='Password'
+            )
+
+        fieldset
+          button.submit(type='submit' value='Login') Login
+            i.icon-login

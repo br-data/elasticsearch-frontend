@@ -2,29 +2,30 @@ extends layout
 
 block content
 
-  script(src='/modal.js')
-  script(src='/search.js')
-
   include navigation
 
-  header.search
+  script(src='/search.js')
 
-    div.center
+  header.search.white
+
+    .center
 
       h1.title=page.title
       p.description=page.description
 
       form(action='search')
 
-        fieldset
-          input.input(
-            type='search'
-            name='query'
-            placeholder='Start searching'
-            value=(query.query ? query.query : '')
-          )
-          button.submit(type='submit') Search
-            i.icon-search
+        fieldset.main
+          span.right
+            button.submit(type='submit') Search
+              i.icon-search.loading
+          span.left
+            input(
+              type='search'
+              name='query'
+              placeholder='Start searching'
+              value=(query.query ? query.query : '')
+            )
 
         fieldset.options.type
           strong Type:

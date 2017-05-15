@@ -13,7 +13,8 @@ nav.navigation
       i(class='icon-help')
       | Help
 
-  span.right
-    a(href='/logout')
-      i(class='icon-logout')
-      | Logout
+  if user
+    span.logout
+      a(href='/logout')
+        i(class='icon-logout')
+        | Logout
