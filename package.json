@@ -1,13 +1,13 @@
 {
-  "name": "kuckucksnest-analyse",
+  "name": "elasticsearch-frontend",
   "description": "Tools for analysing and searching documents",
   "author": "Steffen Kühne",
   "version": "0.0.1",
-  "license": "properietary",
+  "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:digitalegarage/kuckucksnest-analyse.git"
+    "url": "git@github.com:digitalegarage/elasticsearch-frontend.git"
   },
   "scripts": {
     "start": "node ./bin/www"

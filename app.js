@@ -16,6 +16,9 @@ const findUser = require('./lib/findUser');
 
 const config = require('./config');
 
+// Copy page config to global
+app.locals.page = config.page;
+
 // Configure the local strategy for use by Passport.
 passport.use(new LocalStrategy(
   (username, password, callback) => {
