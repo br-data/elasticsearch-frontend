@@ -1,8 +1,8 @@
 const config = {};
 
 config.page = {
-  title: 'Kuckucksnest Search',
-  description: 'Search the Kuckucksnest documents for persons, companies and addresses.'
+  title: 'Document Search',
+  description: 'Search Elasticsearch documents for persons, companies and addresses.'
 };
 
 config.users = [
