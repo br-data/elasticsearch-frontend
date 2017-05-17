@@ -1,8 +1,11 @@
 # Elasticsearch Frontend
-Simple web based search engine for [Elasticsearch](https://www.elastic.co/de/products/elasticsearch) with authentication. Build for the exploration and analysis of big document leaks. The application is build with [Express](https://expressjs.com/) and [Pug](https://pugjs.org/). Authentication and protected routes are provided by [Passport](http://passportjs.org/).
+
+[![License](https://img.shields.io/github/license/br-data/elasticsearch-frontend.svg?style=flat-square)]() [![GitHub release](https://img.shields.io/github/release/br-data/elasticsearch-frontend.svg?style=flat-square)]() [![GitHub issues](https://img.shields.io/github/issues/br-data/elasticsearch-frontend.svg?style=flat-square)]()
+
+Simple search interface for large document collections in [Elasticsearch](https://www.elastic.co/de/products/elasticsearch). Made for the exploration and analysis of big document leaks. The application is build with [Express](https://expressjs.com/) and [Pug](https://pugjs.org/). User authentication and protected routes are provided by [Passport](http://passportjs.org/).
 
 ## History
-The initial prototype was build to uncover the tax haven in the free trade zone of Madeira. We used the Elasticsearch to build a document search for the [Madeira Gazette](www.gov-madeira.pt/joram/). Many of those big PDF files are simple document scans which we wanted to search for persons and company names. Read the whole story: [Madeira – A Tax Haven Approved by the European Commission](http://web.br.de/madeira/english/)
+The initial prototype was build to uncover the tax haven in the free trade zone of Madeira. We used Elasticsearch to build a document search for the [Madeira Gazette](www.gov-madeira.pt/joram/). Many of those big PDF files are simple document scans which we wanted to search for persons and company names. Read the whole story: [Madeira – A Tax Haven Approved by the European Commission](http://web.br.de/madeira/english/)
 
 Why build another document search engine? – Because it super lightweight and customizable. Until we add more features.
 

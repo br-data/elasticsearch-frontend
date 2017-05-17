@@ -1,13 +1,13 @@
 {
   "name": "elasticsearch-frontend",
-  "description": "Tools for analysing and searching documents",
+  "description": "Search and explore document leaks with Elasticsearch",
   "author": "Steffen Kühne",
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:digitalegarage/elasticsearch-frontend.git"
+    "url": "git@github.com:br-data/elasticsearch-frontend.git"
   },
   "scripts": {
     "start": "node ./bin/www"
