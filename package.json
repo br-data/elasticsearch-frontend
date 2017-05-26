@@ -2,7 +2,7 @@
   "name": "elasticsearch-frontend",
   "description": "Search and explore document leaks with Elasticsearch",
   "author": "Steffen Kühne",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "repository": {
