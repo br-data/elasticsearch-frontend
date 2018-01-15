@@ -102,9 +102,23 @@ $ NODE_ENV=production forever start bin/www
 
 It's advisable to use SSL/TLS encryption for all connections to the server. One way to do this, is routing your Node.js application through an Apache or Nginx proxy with HTTPS enabled.
 
+## Debugging
+The app uses [debug](https://github.com/visionmedia/debug) as it's core debugging utility. To set the app into debug mode set the environment variable `debug`.
+
+```
+export DEBUG=*
+```
+
+If you are on a Winodws machine use:
+
+```
+set DEBUG=*
+```
+
 ## Planned features
 - Add (inline) document viewer
 - Add document import and ingestion
+- Add direct API access
 - Split data retrieval and rendering
 
 ## Similar projects:
