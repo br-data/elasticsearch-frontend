@@ -4,6 +4,8 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 
+const bcrypt = require('bcrypt');
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
@@ -23,11 +25,16 @@ app.locals.page = config.page;
 // Set the local authentication strategy for the web interface
 passport.use(new LocalStrategy(
   (username, password, callback) => {
-    findUser.byUsername(username, config.users, (err, user) => {
-      if (err) { return callback(err); }
+    findUser.byUsername(username, config.users, (userErr, user) => {
+      if (userErr) { return callback(userErr); }
       if (!user) { return callback(null, false, { message: 'Could not find user.' }); }
-      if (user.password != password) { return callback(null, false, { message: 'Wrong password. Try again.' }); }
-      return callback(null, user);
+      bcrypt.compare(password, user.password, (passwordErr, isValid) => {
+        if (passwordErr) { return callback(passwordErr); }
+        if (!isValid) {
+          return callback(null, false, { message: 'Wrong password. Try again.' });
+        }
+        return callback(null, user);
+      });
     });
   }
 ));
