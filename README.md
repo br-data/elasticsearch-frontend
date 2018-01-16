@@ -77,13 +77,37 @@ The current authentication strategy is username and password, using [passport-lo
 
 For the ease of development, valid users are stored in the configuration `config/config.development.js`:
 
-```
+```javascript
 config.users = [
-  { id: 1, username: 'user', password: 'password', displayName: 'Demo User' }
+  {
+    id: 1,
+    username: 'user',
+    password: '$2a$10$vP0qJyEd0hvvpG5MAaHg9ObUJJpJj9HxINZ/Yqz5nPo5Ms2nhR4r.',
+    displayName: 'Demo User',
+    apiToken: '0b414d8433124406be6500833f1672e5'
+  }
 ];
 ```
 
-Note that the list of user could easily be stored in proper database.
+New password hashes are created using [bcrypt](https://github.com/kelektiv/node.bcrypt.js):
+
+```javacript
+const bcrypt = require('bcrypt')
+const saltRounds = 10
+const myPlaintextPassword = 'password'
+const salt = bcrypt.genSaltSync(saltRounds)
+const passwordHash = bcrypt.hashSync(myPlaintextPassword, salt)
+
+``` 
+
+Note that the list of user could easily be stored in a database like MongoDB.
+
+## API
+
+```
+curl -v -H "Authorization: Bearer 0b414d8433124406be6500833f1672e5" http://127.0.0.1:3000/api
+curl -v "http://127.0.0.1:3000/api?access_token=0b414d8433124406be6500833f1672e5"
+```
 
 ## Deployment
 To deploy the application in a live environment, create a new configuration `config/config.production.js`. Update it with all your server information, Elasticsearch host, credentials etc.
