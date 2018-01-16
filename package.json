@@ -2,7 +2,7 @@
   "name": "elasticsearch-frontend",
   "description": "Search and explore document leaks with Elasticsearch",
   "author": "Steffen Kühne",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "private": true,
   "repository": {
@@ -13,19 +13,19 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.18.2",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.3.5",
-    "debug": "^2.6.6",
-    "elasticsearch": "^11.0.1",
-    "express": "^4.13.3",
-    "express-session": "^1.11.3",
-    "node-dir": "^0.1.16",
-    "passport": "^0.2.2",
+    "debug": "^3.1.0",
+    "elasticsearch": "^14.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "node-dir": "^0.1.17",
+    "passport": "^0.4.0",
+    "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-rc.1",
-    "req-flash": "0.0.3",
-    "tika": "git@github.com:ICIJ/node-tika.git"
+    "pug": "^2.0.0-rc.4",
+    "req-flash": "0.0.3"
   },
   "devDependencies": {
     "eslint-config-esnext": "^1.6.0"
