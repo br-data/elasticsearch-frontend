@@ -6,13 +6,19 @@ config.page = {
 };
 
 config.users = [
-  { id: 1, username: 'user', password: 'password', displayName: 'Demo User' }
+  {
+    id: 1,
+    username: 'user',
+    password: 'password',
+    displayName: 'Demo User',
+    apiToken: '0b414d8433124406be6500833f1672e5'
+  }
 ];
 
 config.database = {
   type: 'elasticsearch',
   host: 'localhost:9200',
-  index: 'kuckucksnest'
+  index: 'joram'
 };
 
 config.queries = {

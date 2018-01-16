@@ -14,14 +14,16 @@ router.get('/',
       query: req.query,
       user: req.user
     });
-  });
+  }
+);
 
 router.get('/login',
   (req, res) => {
     res.render('login', {
       error: { message: req.flash('error') }
     });
-  });
+  }
+);
 
 router.post('/login',
   passport.authenticate('local', {
@@ -30,14 +32,16 @@ router.post('/login',
   }),
   (req, res) => {
     res.redirect('/');
-  });
+  }
+);
 
 router.get('/logout',
   checkLogin({ redirectTo: 'login' }),
   (req, res) => {
     req.logout();
     res.redirect('/');
-  });
+  }
+);
 
 router.get('/search',
   checkLogin({ redirectTo: 'login' }),
@@ -49,7 +53,8 @@ router.get('/search',
       query: req.query,
       user: req.user
     });
-  });
+  }
+);
 
 router.get('/help',
   checkLogin({ redirectTo: 'login' }),
@@ -60,7 +65,19 @@ router.get('/help',
       query: req.query,
       user: req.user
     });
-  });
+  }
+);
 
+router.get('/api',
+  passport.authenticate('bearer', {
+    session: false
+  }),
+  (req, res) => {
+    res.json([{
+      'message': 'API is up and running',
+      'username': req.user.username
+    }]);
+  }
+);
 
 module.exports = router;

@@ -6,6 +6,7 @@ const app = express();
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const BearerStrategy = require('passport-http-bearer').Strategy;
 
 const flash = require('req-flash');
 const cookieParser = require('cookie-parser');
@@ -19,7 +20,7 @@ const config = require('./config');
 // Copy page config to global
 app.locals.page = config.page;
 
-// Configure the local strategy for use by Passport.
+// Set the local authentication strategy for the web interface
 passport.use(new LocalStrategy(
   (username, password, callback) => {
     findUser.byUsername(username, config.users, (err, user) => {
@@ -28,7 +29,19 @@ passport.use(new LocalStrategy(
       if (user.password != password) { return callback(null, false, { message: 'Wrong password. Try again.' }); }
       return callback(null, user);
     });
-  }));
+  }
+));
+
+// Set the authentication strategy for API endpoints
+passport.use(new BearerStrategy(
+  (token, callback) => {
+    findUser.byToken(token, config.users, (err, user) => {
+      if (err) { return callback(err); }
+      if (!user) { return callback(null, false); }
+      return callback(null, user, { scope: 'all' });
+    });
+  }
+));
 
 passport.serializeUser((user, callback) => {
   callback(null, user.id);
