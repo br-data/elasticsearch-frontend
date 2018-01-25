@@ -10,7 +10,6 @@ config.users = [
     id: 1,
     username: 'user',
     password: '$2a$10$vP0qJyEd0hvvpG5MAaHg9ObUJJpJj9HxINZ/Yqz5nPo5Ms2nhR4r.',
-    displayName: 'Demo User',
     apiToken: '0b414d8433124406be6500833f1672e5'
   }
 ];

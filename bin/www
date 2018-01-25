@@ -5,7 +5,7 @@ const app = require('../app.js');
 const port = process.env.PORT || 3000;
 
 const server = app.listen(process.env.PORT || 3000, () => {
-  debug(`Express server listening on port ${server.address().port}`);
+  debug(`Express server listening on port ${server.address().port}.`);
 });
 
 function onError(err) {
@@ -18,11 +18,11 @@ function onError(err) {
   // Handle specific listen errors with friendly messages
   switch (err.code) {
     case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
+      console.error(`${bind} requires elevated privileges.`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
+      console.error(`${bind} is already in use.`);
       process.exit(1);
       break;
     default:

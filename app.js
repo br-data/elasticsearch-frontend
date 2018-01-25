@@ -22,19 +22,18 @@ const config = require('./config');
 // Copy page config to global
 app.locals.page = config.page;
 
-// Set the local authentication strategy for the web interface
+// Set the authentication strategy for the web interface
 passport.use(new LocalStrategy(
   (username, password, callback) => {
-    findUser.byUsername(username, config.users, (userErr, user) => {
-      if (userErr) { return callback(userErr); }
-      if (!user) { return callback(null, false, { message: 'Could not find user.' }); }
-      bcrypt.compare(password, user.password, (passwordErr, isValid) => {
-        if (passwordErr) { return callback(passwordErr); }
-        if (!isValid) {
-          return callback(null, false, { message: 'Wrong password. Try again.' });
-        }
-        return callback(null, user);
-      });
+    findUser.byUsername(username, config.users, (error, user) => {
+      if (error) { return callback(null, false, error); }
+      if (user) {
+        bcrypt.compare(password, user.password, (passwordError, isValid) => {
+          if (passwordError) { return callback(passwordError); }
+          if (isValid) { return callback(null, user); }
+          return callback(null, false, new Error('Wrong password'));
+        });
+      }
     });
   }
 ));
@@ -42,10 +41,9 @@ passport.use(new LocalStrategy(
 // Set the authentication strategy for API endpoints
 passport.use(new BearerStrategy(
   (token, callback) => {
-    findUser.byToken(token, config.users, (err, user) => {
-      if (err) { return callback(err); }
-      if (!user) { return callback(null, false); }
-      return callback(null, user, { scope: 'all' });
+    findUser.byToken(token, config.users, (error, user) => {
+      if (error) { return callback(null, error); }
+      if (user) { return callback(null, user, { scope: 'all' }); }
     });
   }
 ));
@@ -55,8 +53,8 @@ passport.serializeUser((user, callback) => {
 });
 
 passport.deserializeUser((id, callback) => {
-  findUser.byId(id, config.users, (err, user) => {
-    if (err) { return callback(err); }
+  findUser.byId(id, config.users, (error, user) => {
+    if (error) { return callback(error); }
     callback(null, user);
   });
 });
@@ -94,11 +92,11 @@ app.use((req, res) => {
 });
 
 // Handle 500 internal server errors
-app.use((err, req, res) => {
+app.use((error, req, res) => {
   res.status(500);
   res.render('error', {
     title: 'Internal Server Error (500)',
-    error: err,
+    error: error,
     url: req.url
   });
 });
