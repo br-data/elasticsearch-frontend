@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+
 const checkLogin = require('../lib/checkLogin');
 const queryElastic = require('../lib/queryElastic');
 
@@ -77,6 +78,19 @@ router.get('/api',
       'message': 'API is up and running',
       'username': req.user.username
     }]);
+  }
+);
+
+router.get('/api/search',
+  passport.authenticate('bearer', {
+    session: false
+  }),
+  queryElastic(),
+  (req, res) => {
+    res.json({
+      error: req.error,
+      result: req.result
+    });
   }
 );
 
