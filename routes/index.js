@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const checkLogin = require('../lib/checkLogin');
+const checkToken = require('../lib/checkToken');
 const queryElastic = require('../lib/queryElastic');
 
 // Define routes
@@ -74,17 +75,15 @@ router.get('/api',
     session: false
   }),
   (req, res) => {
-    res.json([{
+    res.json({
       'message': 'API is up and running',
       'username': req.user.username
-    }]);
+    });
   }
 );
 
 router.get('/api/search',
-  passport.authenticate('bearer', {
-    session: false
-  }),
+  checkToken(),
   queryElastic(),
   (req, res) => {
     res.json({

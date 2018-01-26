@@ -28,6 +28,7 @@ passport.use(new LocalStrategy(
     findUser.byUsername(username, config.users, (error, user) => {
       if (error) { return callback(null, false, error); }
       if (user) {
+        // Check if the passwort matches the salted hash
         bcrypt.compare(password, user.password, (passwordError, isValid) => {
           if (passwordError) { return callback(passwordError); }
           if (isValid) { return callback(null, user); }
@@ -42,7 +43,7 @@ passport.use(new LocalStrategy(
 passport.use(new BearerStrategy(
   (token, callback) => {
     findUser.byToken(token, config.users, (error, user) => {
-      if (error) { return callback(null, error); }
+      if (error) { return callback(error, false, error); }
       if (user) { return callback(null, user, { scope: 'all' }); }
     });
   }
@@ -86,7 +87,7 @@ app.use('/', routes);
 app.use((req, res) => {
   res.status(404);
   res.render('error', {
-    title: 'Page not Found (404)',
+    title: 'Page Not Found (404)',
     url: req.url
   });
 });
