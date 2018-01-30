@@ -105,8 +105,10 @@ Note that the list of user could easily be stored in a database like MongoDB.
 ## API
 
 ```
-curl -v -H "Authorization: Bearer 0b414d8433124406be6500833f1672e5" http://127.0.0.1:3000/api
-curl -v "http://127.0.0.1:3000/api?access_token=0b414d8433124406be6500833f1672e5"
+curl -H "Authorization: Bearer 0b414d8433124406be6500833f1672e5" http://127.0.0.1:3000/api
+curl "http://127.0.0.1:3000/api?access_token=0b414d8433124406be6500833f1672e5"
+
+curl -H "Authorization: Bearer 0b414d8433124406be6500833f1672e5" "http://localhost:3000/api/search?query=ciboule&type=match&sorting=date"
 ```
 
 ## Deployment
