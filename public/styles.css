@@ -37,6 +37,11 @@ a {
   color: inherit;
 }
 
+code, pre {
+  color: #b22222;
+  font-size: 1.2em;
+}
+
 .fail {
   color: #b22222;
 }
@@ -199,7 +204,8 @@ Navigation bar
   color: #fff;
 }
 
-.navigation .logout {
+.navigation .logout,
+.navigation .profile {
   float: right;
 }
 
@@ -332,9 +338,4 @@ Help
 .help ul {
   list-style: none;
   padding: 0;
-}
-
-.help code {
-  color: #b22222;
-  font-size: 1.2em;
 }

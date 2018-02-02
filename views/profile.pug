@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  include navigation
+
+  section.profile.white
+
+    .center
+
+      h1 User profile
+
+      p Hello #{user.screenname}
+
+      p Your API token:
+      pre=user.apiToken
+
+      if error
+        p.fail
+          strong=error.message
+
+        pre=message.stack

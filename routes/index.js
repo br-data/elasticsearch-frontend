@@ -45,6 +45,18 @@ router.get('/logout',
   }
 );
 
+router.get('/profile',
+  checkLogin({ redirectTo: 'login' }),
+  (req, res) => {
+    res.render('profile', {
+      error: req.error,
+      result: req.result,
+      query: req.query,
+      user: req.user
+    });
+  }
+);
+
 router.get('/search',
   checkLogin({ redirectTo: 'login' }),
   queryElastic(),
