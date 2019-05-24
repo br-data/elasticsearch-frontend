@@ -148,8 +148,10 @@ set DEBUG=*
 - Split data retrieval and rendering
 
 ## Similar projects:
-If you are looking for even mightier alternative, check out:
-- OCCRP: [Aleph](https://github.com/alephdata/aleph), playing live at [Investigative Dashboard](http://data.occrp.org)
+If you are looking for alternatives, check out:
+- OCCRP: [Aleph](https://github.com/alephdata/aleph), powering the [Investigative Dashboard](http://data.occrp.org)
+- ICIJ: [Datashare](https://datashare.icij.org/)
+- EIC: [Hoover](https://hoover.github.io/)
 - New York Times: [Stevedore](https://github.com/newsdev/stevedore)
 - [DocumentCloud](https://github.com/documentcloud) 
 - [Open Semantic Search](https://www.opensemanticsearch.org)
